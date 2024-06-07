@@ -1,0 +1,50 @@
+.phonebookContainer {
+  width: 700px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #235789;
+  background-color: #f3eaf4;
+  padding: 15px;
+  margin: 20px auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  text-align: center;
+}
+.input {
+  border: none;
+  height: 35px;
+  border-radius: 10px;
+  border: 2px solid white;
+  transition: border-color 0.3s ease;
+}
+.input:focus,
+input:hover {
+  outline: none;
+  border: 2px solid #ad7a99;
+}
+.btn {
+  background-color: #235789;
+  color: #f3eaf4;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 600;
+  width: 100px;
+  height: 35px;
+  transition: border-color 0.3s ease;
+}
+
+.btn:hover {
+  outline: none;
+  border: 2px solid #679dcf;
+}
+.btn:focus {
+  outline: none;
+  border: 2px solid #ad7a99;
+}

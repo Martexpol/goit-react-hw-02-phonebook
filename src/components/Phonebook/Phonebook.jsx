@@ -1,0 +1,72 @@
+import { Component } from "react";
+import styles from "./Phonebook.module.scss";
+import { nanoid } from "nanoid";
+import { number } from "prop-types";
+
+export default class Phonebook extends Component {
+  constructor() {
+    super();
+    this.state = { contacts: [], name: "", number: "" };
+  }
+
+  handleChange = (ev) => {
+    const { name, value } = ev.currentTarget;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleSubmit = (ev) => {
+    ev.preventDefault();
+    const newContact = {
+      id: nanoid(),
+      name: this.state.name,
+      number: this.state.number,
+    };
+    this.props.addContact(newContact);
+    this.setState({ name: "", number: "" });
+  };
+
+  render() {
+    const nameId = nanoid();
+    const numId = nanoid();
+    return (
+      <div className={styles.phonebookContainer}>
+        <h2>Phonebook</h2>
+        <form className={styles.form} onSubmit={this.handleSubmit}>
+          <label htmlFor={nameId} className={styles.label}>
+            Name
+          </label>
+          <input
+            id={nameId}
+            className={styles.input}
+            type="text"
+            name="name"
+            pattern="^[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ]+(?: [A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ]+)+$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+          <label htmlFor={numId} className={styles.label}>
+            Phone number
+          </label>
+          <input
+            id={numId}
+            className={styles.input}
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            value={this.state.number}
+            onChange={this.handleChange}
+          />
+          <button type="submit" className={styles.btn}>
+            Add contact
+          </button>
+        </form>
+      </div>
+    );
+  }
+}
