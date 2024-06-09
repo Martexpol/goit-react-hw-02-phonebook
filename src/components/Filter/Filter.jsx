@@ -2,12 +2,12 @@ import { Component } from "react";
 import styles from "./Filter.module.scss";
 
 export default class Filter extends Component {
-  state = {
-    contacts: [],
-    filter: "",
-    name: "",
-    number: "",
-  };
+  // state = {
+  //   contacts: [],
+  //   filter: "",
+  //   name: "",
+  //   number: "",
+  // };
 
   render() {
     return (

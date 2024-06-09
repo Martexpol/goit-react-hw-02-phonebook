@@ -6,7 +6,7 @@ import { number } from "prop-types";
 export default class Phonebook extends Component {
   constructor() {
     super();
-    this.state = { contacts: [], name: "", number: "" };
+    this.state = { name: "", number: "" };
   }
 
   handleChange = (ev) => {
@@ -23,6 +23,24 @@ export default class Phonebook extends Component {
       name: this.state.name,
       number: this.state.number,
     };
+
+    const contactExists = this.props.contacts.some(
+      (contact) =>
+        contact.name === newContact.name ||
+        contact.number === newContact.number,
+    );
+
+    if (contactExists) {
+      window.alert(`${newContact.name} is already in contacts`);
+      return;
+    }
+    // else {
+    //   this.setState((prevState) => ({
+    //     name: "",
+    //     number: "",
+    //   }));
+    // }
+
     this.props.addContact(newContact);
     this.setState({ name: "", number: "" });
   };
@@ -31,8 +49,7 @@ export default class Phonebook extends Component {
     const nameId = nanoid();
     const numId = nanoid();
     return (
-      <div className={styles.phonebookContainer}>
-        <h2>Phonebook</h2>
+      <div>
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <label htmlFor={nameId} className={styles.label}>
             Name
@@ -56,7 +73,7 @@ export default class Phonebook extends Component {
             className={styles.input}
             type="tel"
             name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            pattern="^\+?[1-9]\d{1,14}$"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             value={this.state.number}

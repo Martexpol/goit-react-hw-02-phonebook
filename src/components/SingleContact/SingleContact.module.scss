@@ -1,4 +1,28 @@
 .contact {
   text-transform: capitalize;
   line-height: 150%;
+  display: flex;
+}
+
+.deleteBtn {
+  background-color: #235789;
+  color: #f3eaf4;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 600;
+  width: 100px;
+  height: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.deletebtn:focus {
+  outline: none;
+  border: 2px solid #ad7a99;
+}
+
+.contactName {
+  width: 200px;
+}
+.contactNumber {
+  width: 150px;
 }
